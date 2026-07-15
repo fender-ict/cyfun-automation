@@ -255,11 +255,28 @@
   .contact-card .avatar img{width:100%; height:100%; object-fit:cover; border-radius:50%}
   .contact-card .name{font-weight:600}
   .contact-card .role{font-size:.86rem; color:var(--muted)}
-  .contact-line{display:flex; justify-content:space-between; padding:12px 0; border-top:1px solid var(--line); font-size:.94rem}
-  .contact-line span:first-child{color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:.76rem; letter-spacing:.06em; text-transform:uppercase}
-  .contact-line a{color:var(--teal-dark); text-decoration:none; font-weight:500}
+  .contact-card .li-link{font-size:.82rem; color:var(--teal-dark); text-decoration:none; font-weight:500}
+  .contact-card .li-link:hover{text-decoration:underline}
+  .contact-form{
+    margin-top:22px; padding-top:20px; border-top:1px solid var(--line);
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .contact-form .field{display:flex; flex-direction:column; gap:6px}
+  .contact-form label{
+    font-family:'IBM Plex Mono',monospace; font-size:.7rem; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--muted);
+  }
+  .contact-form input, .contact-form textarea{
+    font-family:'IBM Plex Sans',sans-serif; font-size:.94rem; padding:10px 12px;
+    border:1px solid var(--line); border-radius:2px; background:var(--paper);
+    color:var(--ink); resize:vertical;
+  }
+  .contact-form input:focus, .contact-form textarea:focus{
+    outline:none; border-color:var(--teal); box-shadow:0 0 0 3px var(--teal-soft);
+  }
+  .contact-form button{align-self:flex-start; margin-top:2px; cursor:pointer}
   .disclaimer{
-    font-size:.82rem; color:var(--muted); border-left:2px solid var(--line); padding-left:14px; margin-top:28px; line-height:1.65;
+    font-size:.82rem; color:var(--muted); border-left:2px solid var(--line); padding-left:14px; margin-top:20px; line-height:1.65;
   }
 
   footer{border-top:1px solid var(--line); padding:32px 0; position:relative; z-index:1}
@@ -276,7 +293,7 @@
 <div class="deadline-bar">
   <a href="#contact">
     <div class="deadline-bar-inner">
-      <span class="dl-label">CyFun<sup class="tm" style="color:#8FD5DE">®</sup> <b>ESSENTIAL</b> certification deadline — 18 April 2027</span>
+      <span class="dl-label">CyFun <b>ESSENTIAL</b> certification deadline — 18 April 2027</span>
       <span class="dl-clock" id="nis2Clock">— d — h — m — s</span>
       <span class="dl-note">BASIC/IMPORTANT self-assessment deadline (18 Apr 2026) has already passed</span>
     </div>
@@ -305,7 +322,7 @@
       <div>
         <span class="eyebrow">REF. CYFUN · NIS-2</span>
         <h1 data-reveal>Audit-ready evidence, <em>continuously</em> — not once a year.</h1>
-        <p class="lead" data-reveal>CyFun Automation turns the security systems you already run into a live, scored, auditor-ready evidence trail for the CyFun<sup class="tm">®</sup> framework (CCB Belgium) and NIS-2 — so the week before an audit stops being a fire drill.</p>
+        <p class="lead" data-reveal>CyFun Automation turns the security systems you already run into a live, scored, auditor-ready evidence trail for the CyFun framework (CCB Belgium) and NIS-2 — always current, never a last-minute scramble.</p>
         <div class="hero-ctas" data-reveal>
           <a class="btn" href="#contact">Book a scoping call</a>
           <a class="btn ghost" href="#exhibits">See the dashboard →</a>
@@ -313,12 +330,12 @@
       </div>
       <div class="stamp" data-reveal>
         <div class="stamp-badge">VERIFIED APPROACH</div>
-        <div class="tag">Built on the public CyFun<sup class="tm">®</sup> taxonomy</div>
+        <div class="tag">Built on the public CyFun taxonomy</div>
         <ul>
           <li><span class="redact-mark"></span><span>Read-only API connections — <b>no agents</b>, no new attack surface</span></li>
           <li><span class="redact-mark"></span><span>Every control scored <b>1–5</b> on documentation &amp; implementation maturity</span></li>
           <li><span class="redact-mark"></span><span>Auditor-ready <b>PDF + Excel</b> output, regenerated on every run</span></li>
-          <li><span class="redact-mark"></span><span>Gaps surface on a <b>dashboard</b>, not in week 3 of the audit</span></li>
+          <li><span class="redact-mark"></span><span>Gaps surface on a <b>dashboard</b>, not mid-audit</span></li>
         </ul>
       </div>
     </div>
@@ -328,7 +345,7 @@
     <div class="stats-grid">
       <div class="stat" data-reveal>
         <div class="num">90</div>
-        <div class="label">CyFun<sup class="tm">®</sup> controls scored across BASIC / IMPORTANT / ESSENTIAL</div>
+        <div class="label">CyFun controls scored across BASIC / IMPORTANT / ESSENTIAL</div>
       </div>
       <div class="stat" data-reveal>
         <div class="num">30<sup>+</sup></div>
@@ -355,11 +372,11 @@
         </div>
         <div class="step" data-reveal>
           <div class="n">02</div>
-          <div><h3>Score</h3><p>Every CyFun<sup class="tm">®</sup> control is scored 1–5 on documentation and implementation maturity, mapped directly to CyFun<sup class="tm">®</sup> / NIST CSF-aligned control identifiers — no manual spreadsheet wrangling.</p></div>
+          <div><h3>Score</h3><p>Every CyFun control is scored 1–5 on documentation and implementation maturity, mapped directly to CyFun / NIST CSF-aligned control identifiers — no manual spreadsheet wrangling.</p></div>
         </div>
         <div class="step" data-reveal>
           <div class="n">03</div>
-          <div><h3>Report</h3><p>Auditor-ready evidence per control, plus a pre-filled CyFun<sup class="tm">®</sup> Excel self-assessment — regenerated automatically every time the pipeline runs.</p></div>
+          <div><h3>Report</h3><p>Auditor-ready evidence per control, plus a pre-filled CyFun Excel self-assessment — regenerated automatically every time the pipeline runs.</p></div>
         </div>
         <div class="step" data-reveal>
           <div class="n">04</div>
@@ -390,7 +407,7 @@
         <div class="rung essential" data-reveal>
           <div class="lvl">TIER 3</div>
           <div class="count">ESSENTIAL</div>
-          <div class="desc">All 90 controls — full CyFun<sup class="tm">®</sup> scope, matching NIS-2 essential-entity expectations.</div>
+          <div class="desc">All 90 controls — full CyFun scope, matching NIS-2 essential-entity expectations.</div>
         </div>
       </div>
       <div class="domains" data-reveal>
@@ -431,7 +448,7 @@
           <div class="exhibit-copy" data-reveal>
             <span class="eyebrow">Controls</span>
             <h3>Every control, filterable by domain or gap.</h3>
-            <p>Filter by CyFun<sup class="tm">®</sup> domain, key measures only, or "gaps only" to see exactly what's missing evidence — before an auditor finds it for you.</p>
+            <p>Filter by CyFun domain, key measures only, or "gaps only" to see exactly what's missing evidence — before an auditor finds it for you.</p>
           </div>
         </div>
         <div class="exhibit">
@@ -470,7 +487,7 @@
           <div class="case-stats">
             <div class="case-stat">
               <div class="big">61%<span class="arrow">→</span>94%</div>
-              <div class="lbl">CyFun<sup class="tm">®</sup> coverage (BASIC + IMPORTANT) over 6 weeks</div>
+              <div class="lbl">CyFun coverage (BASIC + IMPORTANT) over 6 weeks</div>
             </div>
             <div class="case-stat">
               <div class="big">3 weeks<span class="arrow">→</span>&lt;1 day</div>
@@ -493,7 +510,7 @@
         <h2 style="font-size:2.1rem; margin-top:14px">Scope it in one call.</h2>
         <p style="color:var(--ink-soft); margin-top:14px; max-width:52ch">
           Every environment is different. A short scoping call is enough to map your existing
-          security stack to the CyFun<sup class="tm">®</sup> controls it already covers, and to size
+          security stack to the CyFun controls it already covers, and to size
           what's left — before any commitment.
         </p>
         <p style="color:var(--ink-soft); max-width:52ch">
@@ -511,19 +528,27 @@
           <div>
             <div class="name">Filip Truyens</div>
             <div class="role">Independent security &amp; compliance consultant</div>
+            <a class="li-link" href="https://www.linkedin.com/in/filiptruyens" target="_blank" rel="noopener">LinkedIn ↗</a>
           </div>
         </div>
-        <div class="contact-line"><span>Email</span><a href="mailto:filip.truyens@outlook.com">filip.truyens@outlook.com</a></div>
-        <div class="contact-line"><span>LinkedIn</span><a href="https://www.linkedin.com/in/filiptruyens" target="_blank" rel="noopener">/in/filiptruyens ↗</a></div>
-        <div class="contact-line"><span>Based in</span><span>Belgium</span></div>
-        <div class="contact-line"><span>Scope</span><span>Belgium &amp; EU</span></div>
+        <form class="contact-form" id="contactForm">
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="cf-message">What are you looking to scope?</label>
+            <textarea id="cf-message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send</button>
+        </form>
         <div class="disclaimer">
-          CyFun<sup class="tm">®</sup> (CyberFundamentals<sup class="tm">®</sup>) is a registered trademark of the
-          Centre for Cybersecurity Belgium (CCB) — see <a href="https://cyfun.eu" target="_blank" rel="noopener">cyfun.eu</a>
-          for the authoritative source. CyFun Automation is an independently built tool that
-          implements the public CyFun<sup class="tm">®</sup> taxonomy — it is not affiliated with, endorsed by, or
-          produced by CCB. Messages sent to the address above go directly to Filip Truyens and are
-          not stored on this site or shared with third parties.
+          Sending opens an email to Filip Truyens — nothing typed above is stored on this site or
+          shared with third parties.
         </div>
       </div>
     </div>
@@ -551,6 +576,17 @@
   }
   tickClock();
   setInterval(tickClock, 1000);
+
+  const contactForm = document.getElementById('contactForm');
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = contactForm.name.value.trim();
+    const email = contactForm.email.value.trim();
+    const message = contactForm.message.value.trim();
+    const subject = encodeURIComponent(`Scoping call — ${name}`);
+    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+    window.location.href = `mailto:filip.truyens@outlook.com?subject=${subject}&body=${body}`;
+  });
 
   const els = document.querySelectorAll('[data-reveal]');
   const io = new IntersectionObserver((entries) => {
