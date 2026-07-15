@@ -248,9 +248,11 @@
   }
   .contact-card .who{display:flex; align-items:center; gap:14px; margin-bottom:18px}
   .contact-card .avatar{
-    width:46px; height:46px; border-radius:50%; background:var(--teal-soft); color:var(--teal-dark);
+    width:56px; height:56px; border-radius:50%; background:var(--teal-soft); color:var(--teal-dark);
     display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:600;
+    overflow:hidden; flex:none;
   }
+  .contact-card .avatar img{width:100%; height:100%; object-fit:cover; border-radius:50%}
   .contact-card .name{font-weight:600}
   .contact-card .role{font-size:.86rem; color:var(--muted)}
   .contact-line{display:flex; justify-content:space-between; padding:12px 0; border-top:1px solid var(--line); font-size:.94rem}
@@ -301,7 +303,7 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow">REF. CYFUN<sup class="tm">®</sup> · NIS-2</span>
+        <span class="eyebrow">REF. CYFUN · NIS-2</span>
         <h1 data-reveal>Audit-ready evidence, <em>continuously</em> — not once a year.</h1>
         <p class="lead" data-reveal>CyFun Automation turns the security systems you already run into a live, scored, auditor-ready evidence trail for the CyFun<sup class="tm">®</sup> framework (CCB Belgium) and NIS-2 — so the week before an audit stops being a fire drill.</p>
         <div class="hero-ctas" data-reveal>
@@ -505,7 +507,7 @@
       </div>
       <div class="contact-card" data-reveal>
         <div class="who">
-          <div class="avatar">FT</div>
+          <div class="avatar"><img src="assets/filip-truyens.jpg" alt="Filip Truyens" loading="lazy"></div>
           <div>
             <div class="name">Filip Truyens</div>
             <div class="role">Independent security &amp; compliance consultant</div>
