@@ -261,6 +261,7 @@
     margin-top:22px; padding-top:20px; border-top:1px solid var(--line);
     display:flex; flex-direction:column; gap:14px;
   }
+  .contact-form[hidden]{display:none}
   .contact-form .field{display:flex; flex-direction:column; gap:6px}
   .contact-form label{
     font-family:'IBM Plex Mono',monospace; font-size:.7rem; letter-spacing:.08em;
@@ -275,6 +276,11 @@
     outline:none; border-color:var(--teal); box-shadow:0 0 0 3px var(--teal-soft);
   }
   .contact-form button{align-self:flex-start; margin-top:2px; cursor:pointer}
+  .contact-form button:disabled{opacity:.6; cursor:default}
+  .form-status{font-size:.92rem; margin:18px 0 0; padding:12px 14px; border-radius:2px; display:none}
+  .form-status:not(:empty){display:block}
+  .form-status.ok{background:var(--teal-soft); color:var(--teal-dark)}
+  .form-status.err{background:#FBEAEA; color:#9C2B2B}
   .disclaimer{
     font-size:.82rem; color:var(--muted); border-left:2px solid var(--line); padding-left:14px; margin-top:20px; line-height:1.65;
   }
@@ -531,7 +537,11 @@
             <a class="li-link" href="https://www.linkedin.com/in/filiptruyens" target="_blank" rel="noopener">LinkedIn ↗</a>
           </div>
         </div>
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/filip.truyens@outlook.com" method="POST">
+          <input type="hidden" name="_subject" value="CyFun Automation — new scoping request">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
           <div class="field">
             <label for="cf-name">Name</label>
             <input type="text" id="cf-name" name="name" required>
@@ -544,11 +554,11 @@
             <label for="cf-message">What are you looking to scope?</label>
             <textarea id="cf-message" name="message" rows="4" required></textarea>
           </div>
-          <button type="submit" class="btn">Send</button>
+          <button type="submit" class="btn" id="cfSubmit">Send</button>
         </form>
+        <p class="form-status" id="cfStatus" aria-live="polite"></p>
         <div class="disclaimer">
-          Sending opens an email to Filip Truyens — nothing typed above is stored on this site or
-          shared with third parties.
+          Submissions are relayed by FormSubmit directly to Filip Truyens — not stored on this site.
         </div>
       </div>
     </div>
@@ -578,14 +588,31 @@
   setInterval(tickClock, 1000);
 
   const contactForm = document.getElementById('contactForm');
-  contactForm.addEventListener('submit', (e) => {
+  const cfStatus = document.getElementById('cfStatus');
+  const cfSubmit = document.getElementById('cfSubmit');
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = contactForm.name.value.trim();
-    const email = contactForm.email.value.trim();
-    const message = contactForm.message.value.trim();
-    const subject = encodeURIComponent(`Scoping call — ${name}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    window.location.href = `mailto:filip.truyens@outlook.com?subject=${subject}&body=${body}`;
+    cfSubmit.disabled = true;
+    cfSubmit.textContent = 'Sending…';
+    cfStatus.textContent = '';
+    cfStatus.className = 'form-status';
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(contactForm),
+      });
+      if (!res.ok) throw new Error('request failed');
+      contactForm.reset();
+      contactForm.hidden = true;
+      cfStatus.textContent = "Thanks — message sent. I'll reply from filip.truyens@outlook.com.";
+      cfStatus.classList.add('ok');
+    } catch (err) {
+      cfStatus.textContent = 'Something went wrong — please email filip.truyens@outlook.com directly.';
+      cfStatus.classList.add('err');
+      cfSubmit.disabled = false;
+      cfSubmit.textContent = 'Send';
+    }
   });
 
   const els = document.querySelectorAll('[data-reveal]');
