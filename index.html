@@ -294,6 +294,13 @@
   footer{border-top:1px solid var(--line); padding:32px 0; position:relative; z-index:1}
   .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:.84rem; color:var(--muted)}
   .footer-row a{color:var(--muted); text-decoration:underline}
+  .fender-credit{display:flex; align-items:center; gap:9px}
+  .fender-mark{
+    width:22px; height:22px; background:var(--teal); color:#fff; border-radius:5px; flex:none;
+    display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:700; font-size:.72rem;
+  }
+  .fender-word{font-family:'Fraunces',serif; font-weight:600; font-size:.82rem; color:var(--ink-soft); line-height:1.25}
+  .fender-word small{display:block; font-family:'IBM Plex Mono',monospace; font-size:.54rem; letter-spacing:.12em; color:var(--muted); font-weight:400}
 
   [data-reveal]{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease}
   [data-reveal].is-visible{opacity:1; transform:translateY(0)}
@@ -607,6 +614,11 @@
 <footer>
   <div class="wrap footer-row">
     <span>© 2026 CyFun Automation — not affiliated with CCB.</span>
+    <span class="fender-credit">
+      Built by
+      <span class="fender-mark">F</span>
+      <span class="fender-word">Fender<small>AUTOMATING REGULATED WORK</small></span>
+    </span>
   </div>
 </footer>
 
