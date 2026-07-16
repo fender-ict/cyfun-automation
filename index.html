@@ -208,7 +208,14 @@
     background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:10px;
     box-shadow:var(--paper-shadow); position:relative;
   }
-  .exhibit-frame img{border-radius:2px; border:1px solid var(--line)}
+  .exhibit-frame img{border-radius:2px; border:1px solid var(--line); cursor:zoom-in; transition:opacity .15s ease}
+  .exhibit-frame img:hover{opacity:.92}
+  .exhibit-frame .zoom-hint{
+    position:absolute; bottom:20px; right:20px; background:var(--redact); color:var(--paper);
+    font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase;
+    padding:5px 10px; border-radius:2px; opacity:0; transition:opacity .15s ease; pointer-events:none;
+  }
+  .exhibit-frame:hover .zoom-hint{opacity:.88}
   .exhibit-tab{
     position:absolute; top:-14px; left:18px; background:var(--redact); color:var(--paper);
     font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.1em; padding:5px 11px; border-radius:2px;
@@ -290,6 +297,29 @@
 
   [data-reveal]{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease}
   [data-reveal].is-visible{opacity:1; transform:translateY(0)}
+
+  /* ---- exhibit lightbox ---- */
+  .lightbox{
+    position:fixed; inset:0; z-index:100; background:rgba(23,22,20,.92);
+    display:none; align-items:center; justify-content:center; padding:5vh 5vw;
+    cursor:zoom-out;
+  }
+  .lightbox.is-open{display:flex}
+  .lightbox img{
+    max-width:100%; max-height:100%; border-radius:4px;
+    box-shadow:0 24px 64px -12px rgba(0,0,0,.6); cursor:default;
+  }
+  .lightbox-close{
+    position:fixed; top:22px; right:28px; width:40px; height:40px; border-radius:50%;
+    background:rgba(246,243,236,.12); border:1px solid rgba(246,243,236,.3); color:var(--paper);
+    font-size:1.3rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:background .15s ease;
+  }
+  .lightbox-close:hover{background:rgba(246,243,236,.22)}
+  .lightbox-tab{
+    position:fixed; top:28px; left:28px; color:#C9C4B4; font-family:'IBM Plex Mono',monospace;
+    font-size:.74rem; letter-spacing:.1em; text-transform:uppercase;
+  }
 </style>
 </head>
 <body>
@@ -438,6 +468,7 @@
           <div class="exhibit-frame" data-reveal>
             <span class="exhibit-tab">EXHIBIT A</span>
             <img src="assets/screenshots/dashboard-basic.png" alt="CyFun Automation coverage dashboard showing coverage percentage, key measures and domain breakdown" loading="lazy">
+            <span class="zoom-hint">Click to enlarge</span>
           </div>
           <div class="exhibit-copy" data-reveal>
             <span class="eyebrow">Dashboard</span>
@@ -449,6 +480,7 @@
           <div class="exhibit-frame" data-reveal>
             <span class="exhibit-tab">EXHIBIT B</span>
             <img src="assets/screenshots/controls-list.png" alt="CyFun Automation controls table with per-control implementation and documentation scores" loading="lazy">
+            <span class="zoom-hint">Click to enlarge</span>
           </div>
           <div class="exhibit-copy" data-reveal>
             <span class="eyebrow">Controls</span>
@@ -460,6 +492,7 @@
           <div class="exhibit-frame" data-reveal>
             <span class="exhibit-tab">EXHIBIT C</span>
             <img src="assets/screenshots/control-detail.png" alt="CyFun Automation control detail view showing score trend over time and linked evidence sources" loading="lazy">
+            <span class="zoom-hint">Click to enlarge</span>
           </div>
           <div class="exhibit-copy" data-reveal>
             <span class="eyebrow">Control detail</span>
@@ -471,6 +504,7 @@
           <div class="exhibit-frame" data-reveal>
             <span class="exhibit-tab">EXHIBIT D</span>
             <img src="assets/screenshots/runs-history.png" alt="CyFun Automation run history showing a full audit trail of evidence-collection runs" loading="lazy">
+            <span class="zoom-hint">Click to enlarge</span>
           </div>
           <div class="exhibit-copy" data-reveal>
             <span class="eyebrow">Run history</span>
@@ -564,6 +598,12 @@
   </section>
 </main>
 
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged screenshot">
+  <span class="lightbox-tab" id="lightboxTab"></span>
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
 <footer>
   <div class="wrap footer-row">
     <span>© 2026 CyFun Automation — not affiliated with CCB.</span>
@@ -612,6 +652,30 @@
       cfSubmit.textContent = 'Send';
     }
   });
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTab = document.getElementById('lightboxTab');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(img) {
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    const tab = img.closest('.exhibit-frame').querySelector('.exhibit-tab');
+    lightboxTab.textContent = tab ? tab.textContent : '';
+    lightbox.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.exhibit-frame img').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img));
+  });
+  lightbox.addEventListener('click', (e) => { if (e.target !== lightboxImg) closeLightbox(); });
+  lightboxClose.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
   const els = document.querySelectorAll('[data-reveal]');
   const io = new IntersectionObserver((entries) => {
