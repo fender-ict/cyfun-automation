@@ -188,7 +188,6 @@
     background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:26px 24px;
     box-shadow:var(--paper-shadow); position:relative;
   }
-  .rung.essential{border-color:var(--teal); box-shadow:0 0 0 1px var(--teal), var(--paper-shadow)}
   .rung .lvl{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; color:var(--muted)}
   .rung .count{font-family:'Fraunces',serif; font-size:2.1rem; font-weight:600; margin:8px 0 4px}
   .rung .desc{font-size:.92rem; color:var(--ink-soft)}
@@ -299,9 +298,9 @@
 <div class="deadline-bar">
   <a href="#contact">
     <div class="deadline-bar-inner">
-      <span class="dl-label">CyFun <b>ESSENTIAL</b> certification deadline — 18 April 2027</span>
+      <span class="dl-label">NIS2 final conformity deadline (essential entities) — 18 April 2027</span>
       <span class="dl-clock" id="nis2Clock">— d — h — m — s</span>
-      <span class="dl-note">BASIC/IMPORTANT self-assessment deadline (18 Apr 2026) has already passed</span>
+      <span class="dl-note">Required level — Basic, Important or Essential — depends on your sector, not your size</span>
     </div>
   </a>
 </div>
@@ -397,7 +396,7 @@
       <div class="section-head" data-reveal>
         <span class="eyebrow">Scope</span>
         <h2>Built on the CyFun<sup class="tm">®</sup> taxonomy, end to end.</h2>
-        <p>CyFun (CyberFundamentals) is the Centre for Cybersecurity Belgium's official cybersecurity framework, aligned to NIST CSF 2.0. It's a registered trademark of the CCB — the authoritative source is <a href="https://cyfun.eu" target="_blank" rel="noopener">cyfun.eu</a>. CyFun Automation is an independent tool covering every certification tier of that framework.</p>
+        <p>CyFun (CyberFundamentals) is the Centre for Cybersecurity Belgium's official cybersecurity framework, aligned to NIST CSF 2.0. It's a registered trademark of the CCB — the authoritative source is <a href="https://cyfun.eu" target="_blank" rel="noopener">cyfun.eu</a>. Which tier applies to you follows from your sector and NIS2 classification, not your headcount: essential entities work toward Important or Essential, important entities are often not required to certify at all. The Basic/Important self-assessment deadline (18 April 2026) has already passed; the final conformity deadline is 18 April 2027. CyFun Automation covers every tier, so wherever you land, the evidence pipeline is the same.</p>
       </div>
       <div class="ladder">
         <div class="rung" data-reveal>
@@ -410,10 +409,10 @@
           <div class="count">IMPORTANT</div>
           <div class="desc">71 controls — a superset of BASIC, for organisations with a higher risk profile.</div>
         </div>
-        <div class="rung essential" data-reveal>
+        <div class="rung" data-reveal>
           <div class="lvl">TIER 3</div>
           <div class="count">ESSENTIAL</div>
-          <div class="desc">All 90 controls — full CyFun scope, matching NIS-2 essential-entity expectations.</div>
+          <div class="desc">All 90 controls — the ceiling of CyFun scope, for organisations whose risk profile calls for the highest assurance level.</div>
         </div>
       </div>
       <div class="domains" data-reveal>
@@ -572,7 +571,7 @@
 </footer>
 
 <script>
-  // CyFun Essential certification deadline: 18 April 2027, 00:00 Brussels time (CEST, UTC+2 in April).
+  // NIS2 final conformity deadline for essential entities: 18 April 2027, 00:00 Brussels time (CEST, UTC+2 in April).
   const NIS2_DEADLINE = new Date('2027-04-18T00:00:00+02:00').getTime();
   const clockEl = document.getElementById('nis2Clock');
   function tickClock() {
