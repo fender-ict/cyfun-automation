@@ -171,7 +171,6 @@
   .section-head p a, .disclaimer a{color:var(--teal-dark); text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:3px}
   .section-head p a:hover, .disclaimer a:hover{text-decoration-color:currentColor}
   sup.tm{font-size:.6em; color:var(--teal-dark); font-weight:600; margin-left:1px}
-  .case sup.tm{color:#8FD5DE}
 
   /* ---- how it works ---- */
   .steps{display:flex; flex-direction:column}
@@ -223,27 +222,6 @@
   .exhibit-copy .eyebrow{margin-bottom:12px}
   .exhibit-copy h3{font-size:1.5rem; margin-bottom:12px}
   .exhibit-copy p{color:var(--ink-soft); margin:0}
-
-  /* ---- case study ---- */
-  .case{
-    background:var(--redact); color:var(--paper); border-radius:6px; padding:56px; position:relative; overflow:hidden;
-  }
-  .case::before{
-    content:""; position:absolute; inset:0;
-    background-image:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-    background-size:40px 40px; pointer-events:none;
-  }
-  .case-inner{position:relative}
-  .case .eyebrow{color:#8FD5DE}
-  .case .eyebrow::before{background:#8FD5DE}
-  .case h2{color:#fff; font-size:clamp(1.7rem,3vw,2.3rem); margin-top:14px; max-width:26ch}
-  .case p.note{color:#C9C4B4; font-size:.86rem; margin-top:10px; max-width:60ch; font-family:'IBM Plex Mono',monospace}
-  .case-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:40px}
-  @media (max-width:760px){ .case-stats{grid-template-columns:1fr} }
-  .case-stat{border-top:1px solid rgba(255,255,255,.18); padding-top:16px}
-  .case-stat .big{font-family:'Fraunces',serif; font-size:2rem; color:#fff}
-  .case-stat .big .arrow{color:#8FD5DE; margin:0 6px; font-style:normal}
-  .case-stat .lbl{font-size:.86rem; color:#C9C4B4; margin-top:6px}
 
   /* ---- contact ---- */
   .contact-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:56px}
@@ -352,7 +330,6 @@
       <a href="#how">How it works</a>
       <a href="#coverage">Coverage</a>
       <a href="#exhibits">Product</a>
-      <a href="#case">Results</a>
     </nav>
     <a class="btn" href="#contact">Book a scoping call</a>
   </div>
@@ -517,32 +494,6 @@
             <span class="eyebrow">Run history</span>
             <h3>A full audit trail, by design.</h3>
             <p>Every evidence-collection run is logged — mode, scope, coverage, status — building the audit trail auditors ask for, automatically.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="case">
-    <div class="wrap">
-      <div class="case" data-reveal>
-        <div class="case-inner">
-          <span class="eyebrow">Illustrative example</span>
-          <h2>What a first NIS-2 self-assessment typically looks like once evidence stops being manual.</h2>
-          <p class="note">Based on a typical mid-size deployment across multiple security systems. Figures are illustrative, not a specific client disclosure.</p>
-          <div class="case-stats">
-            <div class="case-stat">
-              <div class="big">61%<span class="arrow">→</span>94%</div>
-              <div class="lbl">CyFun coverage across the Important-tier scope (133 controls, incl. Basic), over 4 weeks</div>
-            </div>
-            <div class="case-stat">
-              <div class="big">3 weeks<span class="arrow">→</span>&lt;1 day</div>
-              <div class="lbl">Evidence preparation time per audit cycle</div>
-            </div>
-            <div class="case-stat">
-              <div class="big">22 / 22</div>
-              <div class="lbl">CCB key measures (Basic + Important) at maturity ≥ 3</div>
-            </div>
           </div>
         </div>
       </div>
